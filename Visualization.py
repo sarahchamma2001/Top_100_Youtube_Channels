@@ -5,8 +5,8 @@ import pandas as pd
 import numpy as np
 import requests
 import inspect
-#from streamlit_lottie import st_lottie
-from pandas_profiling import ProfileReport
+from streamlit_lottie import st_lottie
+#from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 from numerize import numerize
 from itertools import chain
