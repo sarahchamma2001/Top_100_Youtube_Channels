@@ -110,11 +110,11 @@ started: started year
 # Display customer churn animation
     with col5:
         st_lottie(lottie_dataset, key = "eda",height = 400, width = 700)
-    df=pd.read_csv("YouTube.csv")
+    df=pd.read_csv("Youtube.csv")
     st.dataframe(df)
 
 # EDA page
-df=pd.read_csv("YouTube.csv")
+df=pd.read_csv("Youtube.csv")
 if Menu == "EDA":
   st.header("Visualizations")
 
