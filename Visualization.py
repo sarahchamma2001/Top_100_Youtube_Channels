@@ -1,26 +1,18 @@
-
-import profile
+import requests
 import streamlit as st
+# data
 import pandas as pd
 import numpy as np
-import requests
-import inspect
 from streamlit_lottie import st_lottie
-#from pandas_profiling import ProfileReport
-from streamlit_pandas_profiling import st_profile_report
-from numerize import numerize
-from itertools import chain
-import plotly.graph_objects as go
-import plotly.express as px
-import sklearn
-import statsmodels.api as sm
-from tkinter import Menu
+
+#For Visualization
 import plotly.express as px
 import plotly.graph_objects as go
-import chart_studio.plotly as py
-import seaborn as sns
 from plotly.subplots import make_subplots
-import hydralit_components as hc
+
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
 from streamlit_option_menu import option_menu
 
 # Display lottie animations
