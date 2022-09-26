@@ -3,7 +3,7 @@ import streamlit as st
 # data
 import pandas as pd
 import numpy as np
-#from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie
 
 #For Visualization
 import plotly.express as px
