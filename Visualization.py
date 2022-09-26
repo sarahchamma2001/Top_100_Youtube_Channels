@@ -20,7 +20,6 @@ import plotly.graph_objects as go
 import chart_studio.plotly as py
 import seaborn as sns
 from plotly.subplots import make_subplots
-import matplotlib.pyplot as plt
 import hydralit_components as hc
 from streamlit_option_menu import option_menu
 
