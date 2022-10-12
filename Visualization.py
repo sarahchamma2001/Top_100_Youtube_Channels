@@ -120,7 +120,8 @@ if Menu == "EDA":
 
 #Visualization
   g1,g2,g3= st.columns((1,1,1))
-  k1,k2,k3=st.columns((0.5,9,0.5))
+  d1,d2,d3=st.columns((1,1,1))
+  k1,k2,k3=st.columns((1,1,1))
   s1,s2=st.columns((1,1))
   w1,w2=st.columns((1,1))
 
@@ -162,31 +163,39 @@ if Menu == "EDA":
   g2.write("We can see that the Sports, Shows, and Education categories ranked top 3 means of subscribers.")
   
 #Boxplot of Video Views & Video Counts & Subscribers
-  fig = make_subplots(rows=1, cols=3)
+  video_views= d1.checkbox('video views')
+  video_count = d1.checkbox('video count')
+  subscribers = d1.checkbox('subscribers')
+    
+  fig1 = make_subplots(rows=1, cols=3)
   fig.update_layout(title_text="Boxplot of video views & video count & subscribers",
                   uniformtext_minsize=12, 
                   uniformtext_mode='hide')
 
-  fig.add_trace(go.Box(y=df.video_views_,
+  fig1.add_trace(go.Box(y=df.video_views_,
                     name="video views boxplot",
                     marker_color = 'indianred',
                     boxpoints='outliers'),row=1,col=1)
 
-
-  fig.add_trace(go.Box(y=df.video_count_,
+  fig2 = make_subplots(rows=1, cols=3)
+  fig2.add_trace(go.Box(y=df.video_count_,
                      name="video count boxplot",
                      boxpoints='outliers', 
                      marker_color = 'indianred'),row=1,col=2)
-
-  fig.add_trace(go.Box(y=df.subscribers_,
+  fig3 = make_subplots(rows=1, cols=3)
+  fig3.add_trace(go.Box(y=df.subscribers_,
                     name="subscribers boxplot",
                     boxpoints='outliers', 
                     marker_color = 'indianred'),row=1,col=3)
-  k2.plotly_chart(fig, use_container_width=True)
-  k2.write("The maximum number of views is 188B")
-  k2.write("The maximum number of videos is 209K")
-  k2.write("The maximum number of subscribers in 213M")
-
+  if video_views:
+        k1.plotly_chart(fig1, use_container_width=True)
+  if video_count:
+        k2.plotly_chart(fig2, use_container_width=True)
+  if subscribers:
+        k3.plotly_chart(fig3, use_container_width=True)
+  k1.write("The maximum number of views is 188B")
+  k1.write("The maximum number of videos is 209K")
+  k1.write("The maximum number of subscribers in 213M")
 #Explore youtuber with most subscribers by category
   a = df.groupby(['category_'])['subscribers_'].max()
   most = df[df['subscribers_'].isin(a.values)]
@@ -225,11 +234,14 @@ if Menu == "EDA":
     fig.data[idx].marker.line.color = 'black'
   w1.plotly_chart(fig, use_container_width=True)
 #Top categories each Year
+  Year = w2.slider('Select The year Please', 2005, 2017)
+  df = df[df["started_"]==Year]
+  
   fig = px.bar(df, x="category_", y="started_", animation_frame="started_",
              color="category_",title="Top categories each Year",
              color_discrete_sequence=px.colors.sequential.Reds)
   w2.plotly_chart(fig, use_container_width=True)
-
+    
   title_container = st.container()
   col1, mid, col2 = st.columns([30,30,35])
   with title_container:
